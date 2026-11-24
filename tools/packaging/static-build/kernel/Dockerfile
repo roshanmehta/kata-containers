@@ -6,7 +6,7 @@ FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV INSTALL_IN_GOPATH=false
 
-COPY install_yq.sh /usr/bin/install_yq.sh
+COPY ci/install_yq.sh /usr/bin/install_yq.sh
 
 # kernel deps
 RUN apt-get update && \

@@ -37,7 +37,7 @@ container_build="${container_engine} build"
 
 "${container_engine}" pull "${container_image}" || \
 	{
-		${container_build} -t "${container_image}" "${script_dir}" && \
+		${container_build} -f "${script_dir}/Dockerfile" -t "${container_image}" "${repo_root_dir}" && \
 		# No-op unless PUSH_TO_REGISTRY is exported as "yes"
 		push_to_registry "${container_image}";
 	}

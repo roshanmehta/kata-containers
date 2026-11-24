@@ -142,7 +142,11 @@ push_to_registry() {
 
 get_kernel_image_name() {
 	kernel_script_dir="${repo_root_dir}/tools/packaging/static-build/kernel"
-	echo "${BUILDER_REGISTRY}:kernel-$(get_last_modification "${kernel_script_dir}")-$(uname -m)"
+	local kernel_hash
+	kernel_hash=$(merge_two_hashes \
+		"$(get_last_modification "${kernel_script_dir}")" \
+		"$(get_last_modification "${repo_root_dir}/ci/install_yq.sh")")
+	echo "${BUILDER_REGISTRY}:kernel-${kernel_hash}-$(uname -m)"
 }
 
 sha256sum_from_files() {
